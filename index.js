@@ -1,15 +1,15 @@
-import express from 'express';
-import { json } from 'body-parser';
-import { SessionsClient } from '@google-cloud/dialogflow';
-import cors from 'cors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const dialogflow = require('@google-cloud/dialogflow');
+const cors = require('cors');
 
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(bodyParser.json());
 
 const projectId = 'your-dialogflow-project-id';
-const sessionClient = new SessionsClient({
-  keyFilename: 'key.json',
+const sessionClient = new dialogflow.SessionsClient({
+  keyFilename: 'key.json'
 });
 
 app.post('/dialogflow', async (req, res) => {
